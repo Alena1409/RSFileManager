@@ -1,5 +1,6 @@
 import { getUserName } from './get-user-name.js';
 import { up } from './commands/up.js';
+import { cd } from './commands/cd.js';
 
 function start() {
   const userName = getUserName();
@@ -7,14 +8,21 @@ function start() {
   const path = process.cwd();
   console.log(`\nYou are currently in ${path}`);
 
-  process.stdin.on('data', (input) => {
+  process.stdin.on('data', async (input) => {
     const command = input.toString().trim();
+    const [cmd, ...args] = command.split(' ');
 
-    if (command === '.exit') {
+    if (cmd === '.exit') {
       console.log(`\nThank you for using File Manager,  ${userName}, goodbye!`);
       process.exit();
-    } else if (command === 'up') {
+    } else if (cmd === 'up') {
       up();
+    } else if (cmd === 'cd') {
+      if (args.length === 0) {
+        console.log('Invalid input');
+      } else {
+        await cd(args.join(' '));
+      }
     }
   });
 
