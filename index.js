@@ -1,6 +1,7 @@
 import { getUserName } from './get-user-name.js';
 import { up } from './commands/up.js';
 import { cd } from './commands/cd.js';
+import { ls } from './commands/ls.js';
 
 function start() {
   const userName = getUserName();
@@ -23,6 +24,8 @@ function start() {
       } else {
         await cd(args.join(' '));
       }
+    } else if (cmd === 'ls') {
+      await ls();
     }
   });
 
