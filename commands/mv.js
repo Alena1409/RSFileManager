@@ -3,7 +3,7 @@ import { pipeline } from 'stream/promises';
 import path from 'path';
 import { cwd } from 'process';
 
-export async function cp(filePath, newFilePath) {
+export async function mv(filePath, newFilePath) {
   const absoluteFilePath = path.isAbsolute(filePath)
     ? filePath
     : path.join(cwd(), filePath);
@@ -17,7 +17,9 @@ export async function cp(filePath, newFilePath) {
 
   try {
     await pipeline(readStream, writeStream);
-    console.log(`\nSuccessfully copied '${filePath}' to '${newFilePath}'.`);
+    await fs.unlink(absoluteSourcePath);
+
+    console.log(`\nSuccessfully moved '${filePath}' to '${newFilePath}'.`);
   } catch (err) {
     if (err.code === 'ENOENT') {
       errorMessage = `\nSource file not found or destination path is invalid: '${filePath}'.`;

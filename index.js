@@ -8,6 +8,7 @@ import { add } from './commands/add.js';
 import { mkdir } from './commands/mkdir.js';
 import { rn } from './commands/rn.js';
 import { cp } from './commands/cp.js';
+import { mv } from './commands/mv.js';
 
 function start() {
   const userName = getUserName();
@@ -67,6 +68,13 @@ function start() {
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await cp(args[0], args[1]);
+      }
+    } else if (cmd === 'mv'){
+      if (args.length === 0 || args.length === 0) {
+        console.log('Invalid input');
+        console.log(`\nYou are currently in ${cwd()}`);
+      } else {
+        await mv(args[0], args[1]);
       }
     }
   });
