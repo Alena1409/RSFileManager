@@ -13,6 +13,7 @@ import { rm } from './commands/rm.js';
 import { osInfo } from './commands/os.js';
 import { compress } from './commands/compress.js';
 import { decompress } from './commands/decompress.js';
+import { hash } from './commands/hash.js';
 
 function start() {
   const userName = getUserName();
@@ -107,6 +108,13 @@ function start() {
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await decompress(args[0]);
+      }
+    }else if (cmd === 'hash') {
+      if (args.length === 0) {
+        console.log('Invalid input');
+        console.log(`\nYou are currently in ${cwd()}`);
+      } else {
+        await hash(args[0]);
       }
     }
   });
