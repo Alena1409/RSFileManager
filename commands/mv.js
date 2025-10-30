@@ -1,4 +1,5 @@
 import { createReadStream, createWriteStream } from 'fs';
+import { promises as fs } from 'fs';
 import { pipeline } from 'stream/promises';
 import path from 'path';
 import { cwd } from 'process';
