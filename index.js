@@ -2,6 +2,7 @@ import { getUserName } from './get-user-name.js';
 import { up } from './commands/up.js';
 import { cd } from './commands/cd.js';
 import { ls } from './commands/ls.js';
+import { cat } from './commands/cat.js';
 
 function start() {
   const userName = getUserName();
@@ -20,12 +21,18 @@ function start() {
       up();
     } else if (cmd === 'cd') {
       if (args.length === 0) {
-        console.log('Invalid input');
+        console.log('Invalid input, folderPath is not');
       } else {
         await cd(args.join(' '));
       }
     } else if (cmd === 'ls') {
       await ls();
+    } else if (cmd === 'cat') {
+      if (args.length === 0) {
+        console.log('Invalid input, filePath is not');
+      } else {
+        cat(args.join(' '));
+      }
     }
   });
 
