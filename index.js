@@ -3,6 +3,7 @@ import { up } from './commands/up.js';
 import { cd } from './commands/cd.js';
 import { ls } from './commands/ls.js';
 import { cat } from './commands/cat.js';
+import { add } from './commands/add.js';
 
 function start() {
   const userName = getUserName();
@@ -22,6 +23,7 @@ function start() {
     } else if (cmd === 'cd') {
       if (args.length === 0) {
         console.log('Invalid input, folderPath is not');
+        console.log(`\nYou are currently in ${process.cwd()}`);
       } else {
         await cd(args.join(' '));
       }
@@ -30,8 +32,16 @@ function start() {
     } else if (cmd === 'cat') {
       if (args.length === 0) {
         console.log('Invalid input, filePath is not');
+        console.log(`\nYou are currently in ${process.cwd()}`);
       } else {
         cat(args.join(' '));
+      }
+    } else if (cmd === 'add'){
+      if (args.length === 0) {
+        console.log('Invalid input, fileName is not specified');
+        console.log(`\nYou are currently in ${process.cwd()}`);
+      } else {
+        await add(args[0]);
       }
     }
   });
