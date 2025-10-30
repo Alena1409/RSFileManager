@@ -1,4 +1,5 @@
 import os from 'os';
+import { cwd } from 'process';
 
 
 export async function osInfo(com) {
@@ -29,4 +30,5 @@ export async function osInfo(com) {
     result = 'Invalid input: unknown OS command.';
   }
   console.log(result);
+  console.log(`\nYou are currently in ${cwd()}`);
 }

@@ -11,6 +11,8 @@ import { cp } from './commands/cp.js';
 import { mv } from './commands/mv.js';
 import { rm } from './commands/rm.js';
 import { osInfo } from './commands/os.js';
+import { compress } from './commands/compress.js';
+import { decompress } from './commands/decompress.js';
 
 function start() {
   const userName = getUserName();
@@ -43,57 +45,70 @@ function start() {
       } else {
         cat(args.join(' '));
       }
-    } else if (cmd === 'add'){
+    } else if (cmd === 'add') {
       if (args.length === 0) {
         console.log('Invalid input, fileName is not specified');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await add(args[0]);
       }
-    } else if (cmd === 'mkdir'){
+    } else if (cmd === 'mkdir') {
       if (args.length === 0) {
         console.log('Invalid input, dirName is not specified');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await mkdir(args[0]);
       }
-    } else if (cmd === 'rn'){
+    } else if (cmd === 'rn') {
       if (args.length === 0 || args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await rn(args[0], args[1]);
       }
-    } else if (cmd === 'cp'){
+    } else if (cmd === 'cp') {
       if (args.length === 0 || args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await cp(args[0], args[1]);
       }
-    } else if (cmd === 'mv'){
+    } else if (cmd === 'mv') {
       if (args.length === 0 || args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await mv(args[0], args[1]);
       }
-    } else if (cmd === 'rm'){
+    } else if (cmd === 'rm') {
       if (args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await rm(args[0]);
       }
-    }else if (cmd === 'os'){
+    } else if (cmd === 'os') {
       if (args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await osInfo(args[0]);
       }
+    } else if (cmd === 'compress') {
+      if (args.length === 0) {
+        console.log('Invalid input');
+        console.log(`\nYou are currently in ${cwd()}`);
+      } else {
+        await compress(args[0]);
+      }
+    } else if (cmd === 'decompress') {
+      if (args.length === 0) {
+        console.log('Invalid input');
+        console.log(`\nYou are currently in ${cwd()}`);
+      } else {
+        await decompress(args[0]);
+      }
     }
-
   });
 
   process.on('SIGINT', () => {
