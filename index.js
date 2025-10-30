@@ -1,14 +1,16 @@
 import { getUserName } from './get-user-name.js';
+import { cwd } from 'process';
 import { up } from './commands/up.js';
 import { cd } from './commands/cd.js';
 import { ls } from './commands/ls.js';
 import { cat } from './commands/cat.js';
 import { add } from './commands/add.js';
+import { mkdir } from './commands/mkdir.js';
 
 function start() {
   const userName = getUserName();
   console.log(`Welcome to the File Manager, ${userName}!`);
-  const path = process.cwd();
+  const path = cwd();
   console.log(`\nYou are currently in ${path}`);
 
   process.stdin.on('data', async (input) => {
@@ -23,7 +25,7 @@ function start() {
     } else if (cmd === 'cd') {
       if (args.length === 0) {
         console.log('Invalid input, folderPath is not');
-        console.log(`\nYou are currently in ${process.cwd()}`);
+        console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await cd(args.join(' '));
       }
@@ -32,16 +34,23 @@ function start() {
     } else if (cmd === 'cat') {
       if (args.length === 0) {
         console.log('Invalid input, filePath is not');
-        console.log(`\nYou are currently in ${process.cwd()}`);
+        console.log(`\nYou are currently in ${cwd()}`);
       } else {
         cat(args.join(' '));
       }
     } else if (cmd === 'add'){
       if (args.length === 0) {
         console.log('Invalid input, fileName is not specified');
-        console.log(`\nYou are currently in ${process.cwd()}`);
+        console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await add(args[0]);
+      }
+    } else if (cmd === 'mkdir'){
+      if (args.length === 0) {
+        console.log('Invalid input, dirName is not specified');
+        console.log(`\nYou are currently in ${cwd()}`);
+      } else {
+        await mkdir(args[0]);
       }
     }
   });

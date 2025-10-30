@@ -1,13 +1,14 @@
 import path from 'path';
+import { cwd } from 'process';
 
 export function up() {
-  const currentPath = process.cwd();
+  const currentPath = cwd();
   const newPath = path.dirname(currentPath);
   if (currentPath === newPath) {
-    console.log(`\nYou are currently in ${process.cwd()}`);
+    console.log(`\nYou are currently in ${cwd()}`);
     return;
   }
 
   process.chdir(newPath);
-  console.log(`\nYou are currently in ${process.cwd()}`);
+  console.log(`\nYou are currently in ${cwd()}`);
 }

@@ -1,10 +1,11 @@
 import { createReadStream } from 'fs';
 import path from 'path';
+import { cwd } from 'process';
 
 export function cat(filePath) {
   const absolutePath = path.isAbsolute(filePath)
     ? filePath
-    : path.join(process.cwd(), filePath);
+    : path.join(cwd(), filePath);
 
   const readableStream = createReadStream(absolutePath, { encoding: 'utf8' });
 
@@ -18,10 +19,10 @@ export function cat(filePath) {
     } else {
       console.error(`\nOperation failed: ${error.message}`);
     }
-    console.log(`\nYou are currently in ${process.cwd()}`);
+    console.log(`\nYou are currently in ${cwd()}`);
   });
 
   readableStream.on('end', () => {
-    console.log(`\nYou are currently in ${process.cwd()}`);
+    console.log(`\nYou are currently in ${cwd()}`);
   });
 }

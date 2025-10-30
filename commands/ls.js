@@ -1,8 +1,9 @@
 import { promises as fs } from 'fs';
+import { cwd } from 'process';
 
 export async function ls() {
   try {
-    const items = await fs.readdir(process.cwd(), { withFileTypes: true });
+    const items = await fs.readdir(cwd(), { withFileTypes: true });
     const tableData = items
       .sort((a, b) => {
         if (a.isDirectory() && !b.isDirectory()) return -1;
@@ -18,6 +19,6 @@ export async function ls() {
   } catch {
     console.log(`\nOperation failed`);
   } finally {
-    console.log(`\nYou are currently in ${process.cwd()}`);
+    console.log(`\nYou are currently in ${cwd()}`);
   }
 }

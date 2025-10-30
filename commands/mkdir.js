@@ -2,15 +2,15 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { cwd } from 'process';
 
-export async function add(fileName) {
-  const filePath = path.join(cwd(), fileName);
+export async function mkdir(dirName) {
+  const dirPath = path.join(cwd(), dirName);
 
   try {
-    await fs.writeFile(filePath, '', { flag: 'wx' });
-    console.log(`\nFile '${fileName}' successfully created!`);
+    await fs.mkdir(dirPath, { recursive: false });
+    console.log(`\nDirectory '${dirName}' successfully created!`);
   } catch (err) {
     if (err.code === 'EEXIST') {
-      console.log(`\nFile already exists: ${fileName}`);
+      console.log(`\nDirectory already exists: ${dirName}`);
     }
     console.log(`\nOperation failed.`);
   } finally {
