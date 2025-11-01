@@ -9,7 +9,7 @@ export async function mv(filePath, newFilePath) {
     ? filePath
     : path.join(cwd(), filePath);
 
-  const absoluteNewFilePath = path.isAbsolute(newFilePath)
+  let absoluteNewFilePath = path.isAbsolute(newFilePath)
     ? newFilePath
     : path.join(cwd(), newFilePath);
 
@@ -28,7 +28,7 @@ export async function mv(filePath, newFilePath) {
       );
     } else if (err.code === 'EEXIST') {
       console.log(
-        `\nOperation failed. Target file already exists: '${newFilePath}'.`
+        `\nOperation failed. '${newFilePath}': add in path file's name.`
       );
     } else {
       console.log(`\nOperation failed.`);

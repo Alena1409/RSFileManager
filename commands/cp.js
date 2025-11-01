@@ -20,9 +20,13 @@ export async function cp(filePath, newFilePath) {
     console.log(`\nSuccessfully copied '${filePath}' to '${newFilePath}'.`);
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.log(`\nOperation failed. Source file not found or destination path is invalid: '${filePath}'.`);
+      console.log(
+        `\nOperation failed. Source file not found or destination path is invalid: '${filePath}'.`
+      );
     } else if (err.code === 'EEXIST') {
-      console.log(`\nOperation failed. Target file already exists: '${newFilePath}'.`);
+      console.log(
+        `\nOperation failed. '${newFilePath}': add in path file's name.`
+      );
     } else {
       console.log(`\nOperation failed.`);
     }

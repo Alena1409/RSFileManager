@@ -17,8 +17,7 @@ import { hash } from './commands/hash.js';
 
 function start() {
   const userName = getUserName();
-  process.chdir(os.homedir());
-  
+
   console.log(`Welcome to the File Manager, ${userName}!`);
   const path = cwd();
   console.log(`\nYou are currently in ${path}`);
