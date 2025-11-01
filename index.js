@@ -17,6 +17,8 @@ import { hash } from './commands/hash.js';
 
 function start() {
   const userName = getUserName();
+  process.chdir(os.homedir());
+  
   console.log(`Welcome to the File Manager, ${userName}!`);
   const path = cwd();
   console.log(`\nYou are currently in ${path}`);
@@ -61,21 +63,21 @@ function start() {
         await mkdir(args[0]);
       }
     } else if (cmd === 'rn') {
-      if (args.length === 0 || args.length === 0) {
+      if (args.length !== 2) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await rn(args[0], args[1]);
       }
     } else if (cmd === 'cp') {
-      if (args.length === 0 || args.length === 0) {
+      if (args.length !== 2) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await cp(args[0], args[1]);
       }
     } else if (cmd === 'mv') {
-      if (args.length === 0 || args.length === 0) {
+      if (args.length !== 2) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
@@ -96,26 +98,29 @@ function start() {
         await osInfo(args[0]);
       }
     } else if (cmd === 'compress') {
-      if (args.length === 0 || args.length === 0) {
+      if (args.length !== 2) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
-        await compress(args[0]);
+        await compress(args[0], args[1]);
       }
     } else if (cmd === 'decompress') {
-      if (args.length === 0 || args.length === 0) {
+      if (args.length !== 2) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
-        await decompress(args[0]);
+        await decompress(args[0], args[1]);
       }
-    }else if (cmd === 'hash') {
+    } else if (cmd === 'hash') {
       if (args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await hash(args[0]);
       }
+    } else {
+      console.log('Invalid input');
+      console.log(`\nYou are currently in ${cwd()}`);
     }
   });
 

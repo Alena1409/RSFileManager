@@ -16,8 +16,9 @@ export async function rn(filePath, newName) {
       console.log(`\nSource file not found: ${filePath}`);
     } else if (err.code === 'EEXIST') {
       console.log(`\nFile already exists: ${newNamePath}`);
+    } else {
+      console.log(`\nOperation failed.`);
     }
-    console.log(`\nOperation failed.`);
   } finally {
     console.log(`\nYou are currently in ${cwd()}`);
   }

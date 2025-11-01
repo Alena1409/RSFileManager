@@ -18,16 +18,21 @@ export async function mv(filePath, newFilePath) {
 
   try {
     await pipeline(readStream, writeStream);
-    await fs.unlink(absoluteSourcePath);
+    await fs.unlink(absoluteFilePath);
 
     console.log(`\nSuccessfully moved '${filePath}' to '${newFilePath}'.`);
   } catch (err) {
     if (err.code === 'ENOENT') {
-      errorMessage = `\nSource file not found or destination path is invalid: '${filePath}'.`;
+      console.log(
+        `\nOperation failed. Source file not found or destination path is invalid: '${filePath}'.`
+      );
     } else if (err.code === 'EEXIST') {
-      errorMessage = `\nTarget file already exists: '${newFilePath}'.`;
+      console.log(
+        `\nOperation failed. Target file already exists: '${newFilePath}'.`
+      );
+    } else {
+      console.log(`\nOperation failed.`);
     }
-    console.log(`\nOperation failed.`);
   } finally {
     console.log(`\nYou are currently in ${cwd()}`);
   }

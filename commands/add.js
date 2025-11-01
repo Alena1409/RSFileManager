@@ -10,9 +10,10 @@ export async function add(fileName) {
     console.log(`\nFile '${fileName}' successfully created!`);
   } catch (err) {
     if (err.code === 'EEXIST') {
-      console.log(`\nFile already exists: ${fileName}`);
+      console.log(`\nOperation failed. File already exists: ${fileName}`);
+    } else {
+      console.log(`\nOperation failed.`);
     }
-    console.log(`\nOperation failed.`);
   } finally {
     console.log(`\nYou are currently in ${cwd()}`);
   }

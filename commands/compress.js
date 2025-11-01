@@ -2,6 +2,7 @@ import { createReadStream, createWriteStream } from 'fs';
 import { pipeline } from 'stream/promises';
 import { createBrotliCompress } from 'zlib';
 import { cwd } from 'process';
+import path from 'path';
 
 export async function compress(filePath, destinationPath) {
   const absoluteSourcePath = path.isAbsolute(filePath)

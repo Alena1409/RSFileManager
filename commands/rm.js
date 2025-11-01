@@ -13,9 +13,12 @@ export async function rm(filePath) {
     console.log(`\nSuccessfully delete '${filePath}'.`);
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.log(`\nOperation failed. File or directory not found: '${filePath}'.`);
+      console.log(
+        `\nOperation failed. File or directory not found: '${filePath}'.`
+      );
+    } else {
+      console.log(`\nOperation failed.`);
     }
-    console.log(`\nOperation failed.`);
   } finally {
     console.log(`\nYou are currently in ${cwd()}`);
   }
