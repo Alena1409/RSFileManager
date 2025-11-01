@@ -96,14 +96,14 @@ function start() {
         await osInfo(args[0]);
       }
     } else if (cmd === 'compress') {
-      if (args.length === 0) {
+      if (args.length === 0 || args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
         await compress(args[0]);
       }
     } else if (cmd === 'decompress') {
-      if (args.length === 0) {
+      if (args.length === 0 || args.length === 0) {
         console.log('Invalid input');
         console.log(`\nYou are currently in ${cwd()}`);
       } else {
